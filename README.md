@@ -184,134 +184,29 @@ yuno/
 ├── README.md
 ```
 
-## Dependencies
-
-- **Core Dependencies**:
-  - `expo`: `^51.0.0`
-  - `react`: `18.2.0`
-  - `react-native`: `0.79.0`
-  - `expo-av`: `^14.0.7`
-  - `expo-sqlite`: `^14.0.0`
-  - `supabase/supabase-js`: `^2.45.4`
-  - `expo-router`: `^3.5.23`
-  - `expo-image-picker`: `^15.0.7`
-  - `expo-file-system`: `^17.0.1`
-  - `expo-network`: `^5.9.1`
-  - `expo-notifications`: `^0.28.17`
-  - `expo-font`: `^12.0.10`
-  - `@rneui/themed`: `^4.0.0-rc.8`
-  - `react-native-gesture-handler`: `^2.18.1`
-  - `react-native-reanimated`: `^3.15.0`
-  - `react-native-safe-area-context`: `^4.11.0`
-  - `react-native-screens`: `^3.34.0`
-  - `@react-native-async-storage/async-storage`: `^1.24.0`
-  - `zustand`: `^4.5.5`
-
-- **Dev Dependencies**:
-  - `typescript`: `^5.3.3`
-  - `@types/react`: `^18.2.79`
-  - `@babel/core`: `^7.24.9`
-  - `eslint`: `^8.57.0`
-  - `prettier`: `^3.3.3`
-
 ## Setup Instructions
 
 1. **Initialize Project**:
    ```bash
-   npx create-expo-app yuno --template blank-typescript
-   cd yuno
-   npx expo install expo@51.0.0 expo-av@14.0.7 expo-sqlite@14.0.0 supabase/supabase-js@2.45.4 expo-router@3.5.23 expo-image-picker@15.0.7 expo-file-system@17.0.1 expo-network@5.9.1 expo-notifications@0.28.17 expo-font@12.0.10 @rneui/themed@4.0.0-rc.8 react-native-gesture-handler@2.18.1 react-native-reanimated@3.15.0 react-native-safe-area-context@4.11.0 react-native-screens@3.34.0 @react-native-async-storage/async-storage@1.24.0 zustand@4.5.5
-   npm install --save-dev typescript@5.3.3 @types/react@18.2.79 @babel/core@7.24.9 eslint@8.57.0 prettier@3.3.3
+yarn install
    ```
 
-2. **Configure Project**:
-   - Create folder structure as shown above.
-   - Set up `app.json`:
-     ```json
-     {
-       "expo": {
-         "name": "Yuno",
-         "slug": "yuno",
-         "version": "1.0.0",
-         "jsEngine": "hermes",
-         "ios": {
-           "supportsTablet": true,
-           "bundleIdentifier": "com.yuno.app"
-         },
-         "android": {
-           "package": "com.yuno.app"
-         },
-         "plugins": [
-           "expo-router",
-           [
-             "expo-image-picker",
-             {
-               "cameraPermission": "Allow Yuno to access your camera for recording educational videos.",
-               "microphonePermission": "Allow Yuno to access your microphone for video audio."
-             }
-           ],
-           "expo-notifications"
-         ]
-       }
-     }
-     ```
-   - Configure `tsconfig.json`:
-     ```json
-     {
-       "extends": "expo/tsconfig.base",
-       "compilerOptions": {
-         "strict": true,
-         "noEmit": true
-       }
-     }
-     ```
-   - Configure `babel.config.js`:
-     ```javascript
-     module.exports = function (api) {
-       api.cache(true);
-       return {
-         presets: ['babel-preset-expo'],
-         plugins: ['react-native-reanimated/plugin']
-       };
-     };
-     ```
-   - Configure `.eslintrc.js`:
-     ```javascript
-     module.exports = {
-       extends: ['plugin:react/recommended', 'plugin:@typescript-eslint/recommended'],
-       parser: '@typescript-eslint/parser',
-       plugins: ['react', '@typescript-eslint'],
-       rules: {
-         'react/prop-types': 'off'
-       }
-     };
-     ```
-   - Configure `.prettierrc`:
-     ```json
-     {
-       "semi": true,
-       "trailingComma": "es5",
-       "singleQuote": true,
-       "tabWidth": 2
-     }
-     ```
 
-3. **Set Up Database and Sync**:
+2. **Set Up Database and Sync**:
    - Initialize SQLite in `app/api/sqlite/db.ts` and `schema.ts` (see [Database Structure](#database-structure)).
    - Configure Supabase in `app/api/supabase/client.ts` with your Supabase URL and anon key.
    - Implement sync logic in `app/api/sync.ts` to handle SQLite-Supabase syncing.
 
-4. **Run Development Server**:
+3. **Run Development Server**:
    ```bash
    npx expo start
    ```
    Use Expo Go for rapid iteration or create a development build with `expo-dev-client`.
 
-5. **Build and Deploy**:
+4. **Build and Deploy**:
    - Create production builds with EAS Build:
      ```bash
-     npx expo run:android
-     npx expo run:ios
+     eas build
      ```
    - Enable OTA updates for JavaScript changes.
    - Submit to App Store/Google Play via EAS Submit:
@@ -328,7 +223,7 @@ yuno/
   - Implement sync logic in `app/api/sync.ts` using `last_synced` timestamps and `expo-network`.
 
 - **Video/Audio**:
-  - Use `expo-av@14.0.7` for video playback (`components/video/VideoPlayer.tsx`) and recording (`app/post/create.tsx`).
+  - Use `expo-video` for video playback (`components/video/VideoPlayer.tsx`) and recording (`app/post/create.tsx`).
   - Optimize video compression for storage and bandwidth.
 
 - **Navigation**:
@@ -342,7 +237,7 @@ yuno/
 
 - **Branding**:
   - Apply Yuno color scheme (see [Color Usage Guide](#color-usage-guide)).
-  - Use `yuno_logo.png` in `app/assets/images/` for splash screen and branding.
+  - Use `yuno-logo-mark.png` in `app/assets/images/` for splash screen and branding.
   - Load custom fonts in `app/assets/fonts/` with `expo-font`.
 
 - **Testing**:
