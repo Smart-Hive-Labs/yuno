@@ -7,7 +7,6 @@ Yuno is a mobile application designed for students to connect with their school 
 - [Features](#features)
 - [System Architecture](#system-architecture)
 - [Folder Structure](#folder-structure)
-- [Dependencies](#dependencies)
 - [Setup Instructions](#setup-instructions)
 - [Development Guidelines](#development-guidelines)
 - [Color Usage Guide](#color-usage-guide)
@@ -42,7 +41,7 @@ The app prioritizes offline functionality via **Expo SQLite** (`yuno.db`) and sy
 ## System Architecture
 
 ### Technology Stack
-- **Frontend**: React Native, Expo SDK 51, TypeScript, Expo Router.
+- **Frontend**: React Native, Expo SDK Latest, TypeScript, Expo Router.
 - **Database**:
   - **Local**: Expo SQLite (`yuno.db`) for offline storage of users, posts, schools, updates, and community data.
   - **Cloud**: Supabase Postgres with Row Level Security (RLS) for centralized data and authentication.
