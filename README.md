@@ -46,7 +46,7 @@ The app prioritizes offline functionality via **Expo SQLite** (`yuno.db`) and sy
   - **Local**: Expo SQLite (`yuno.db`) for offline storage of users, posts, schools, updates, and community data.
   - **Cloud**: Supabase Postgres with Row Level Security (RLS) for centralized data and authentication.
 - **Media Storage**: Supabase Storage (`avatars`, `school_logos`, `post_content`) and local storage via `expo-file-system`.
-- **Video/Audio**: `expo-av@14.0.7` for video playback/recording.
+- **Video/Audio**: `expo-video` for video playback/recording.
 - **State Management**: Zustand for lightweight state management.
 - **Networking**: `expo-network` for connectivity detection; Supabase for real-time updates.
 - **Notifications**: `expo-notifications` for push notifications.
@@ -174,13 +174,6 @@ yuno/
 │   │   ├── icons/
 │   │   ├── images/
 │   │   │   ├── yuno_logo.png
-├── app.json
-├── tsconfig.json
-├── babel.config.js
-├── package.json
-├── .eslintrc.js
-├── .prettierrc
-├── README.md
 ```
 
 ## Setup Instructions
