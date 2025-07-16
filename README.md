@@ -188,7 +188,7 @@ yuno/
 
 1. **Initialize Project**:
    ```bash
-yarn install
+    yarn install
    ```
 
 
