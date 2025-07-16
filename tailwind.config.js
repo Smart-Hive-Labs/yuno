@@ -13,8 +13,16 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primaryDark: "#03624C", // Bangladesh Green
-        primaryLight: "#2CC295", // Meadow
+        background: "#0B0617",
+        primary: "#00C3FF",
+        secondary: "#CE31FF",
+        highlight: "#FF2DAF",
+        warning: "#FFA928",
+        gradient1: "#00C3FF",
+        gradient2: "#FF2DAF",
+        textPrimary: "#FFFFFF",
+        textSecondary: "rgba(255, 255, 255, 0.7)",
+        textDisabled: "rgba(255, 255, 255, 0.4)",
         dark: "#042222", // Rich Black
         darkLight: "#093535", // Rich Black
         light: "#F8FBFF", // Light Blue
