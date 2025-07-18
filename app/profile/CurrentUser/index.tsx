@@ -1,12 +1,12 @@
 import React from "react";
 import { Text, View } from "react-native";
 
-const topic = () => {
+const MyProfile = () => {
   return (
     <View>
-      <Text>topic</Text>
+      <Text>MyProfile</Text>
     </View>
   );
 };
 
-export default topic;
+export default MyProfile;
