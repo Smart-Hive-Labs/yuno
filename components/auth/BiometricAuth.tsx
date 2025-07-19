@@ -8,13 +8,15 @@ import {
   StyleSheet,
 } from 'react-native';
 import * as LocalAuthentication from 'expo-local-authentication';
-import PinScreen from './PinComponent';
+import { useAuthStore } from '@/store/useAuthStore';
 
 const BiometricAuth = ({ onSuccess }: { onSuccess: () => void }) => {
   const [loading, setLoading] = useState(true);
   const [canUseSystemAuth, setCanUseSystemAuth] = useState(false);
   const [showPinScreen, setShowPinScreen] = useState(false);
+  const [showRetryPrompt, setShowRetryPrompt] = useState(false);
 
+  const setSignedIn = useAuthStore(state=>state.setSignedIn)
   useEffect(() => {
     (async () => {
       const compatible = await LocalAuthentication.hasHardwareAsync();
@@ -38,7 +40,7 @@ const BiometricAuth = ({ onSuccess }: { onSuccess: () => void }) => {
   const handleAuth = async () => {
     try {
       const result = await LocalAuthentication.authenticateAsync({
-        promptMessage: 'Authenticate to access Scriven',
+        promptMessage: 'Authenticate to access Yuno',
         fallbackLabel: 'Use device passcode',
         disableDeviceFallback: false,
       });
@@ -48,42 +50,36 @@ const BiometricAuth = ({ onSuccess }: { onSuccess: () => void }) => {
       } else if (result.error === 'user_cancel' || result.error === 'system_cancel') {
         Alert.alert('Cancelled', 'Authentication cancelled.');
       } else {
-        
+        setShowRetryPrompt(true);
         setShowPinScreen(true);
       }
     } catch (error) {
       Alert.alert('Error', 'Authentication error occurred.');
       setShowPinScreen(true);
+      
     }
   };
 
   if (loading) {
     return (
-      <View style={styles.centered}>
+      <View className='flex justify-center items-center'>
         <ActivityIndicator size="large" />
       </View>
     );
   }
 
-  if (showPinScreen) {
-    return <PinScreen  />;
-  }
+/*if (showPinScreen) {
+    return <PinScreen  onSuccess={() => {
+        setShowPinScreen(false);
+        setSignedIn(true)
+      }} />;
+  }*/
 
   return (
-    <View style={styles.centered}>
-      {canUseSystemAuth && (
-        <Button title="Try Again" onPress={handleAuth} />
-      )}
-    </View>
+    <>
+    </>
   );
 };
 
-const styles = StyleSheet.create({
-  centered: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
 
 export default BiometricAuth;

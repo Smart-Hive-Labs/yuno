@@ -19,6 +19,7 @@ const LoginForm = () => {
 
   const handleLogin = () => {
     console.log('Login attempted with:', email, password);
+    router.push("/(tabs)")
   };
 
   return (
