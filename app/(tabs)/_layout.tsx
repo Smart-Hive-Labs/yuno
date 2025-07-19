@@ -4,6 +4,7 @@ import { useColorScheme } from "nativewind";
 import React from "react";
 import { Platform, Text, View } from "react-native";
 import { Colors } from "../../constants/colors";
+import AuthProvider from "@/context/AuthContext";
 
 type TabIconProps = {
   name: keyof typeof Ionicons.glyphMap;
@@ -66,6 +67,7 @@ export default function TabLayout() {
   const isDark = colorScheme === "dark";
 
   return (
+    <AuthProvider>
     <Tabs
       screenOptions={{
         headerShown: false,
@@ -203,5 +205,6 @@ export default function TabLayout() {
         }}
       />
     </Tabs>
+    </AuthProvider>
   );
 }
