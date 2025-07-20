@@ -9,9 +9,14 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true ,
+       "bundleIdentifier": "com.smarthivelabs.yuno",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false,
+      },
     },
     "android": {
+       "package": "com.smarthivelabs.yuno",
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
